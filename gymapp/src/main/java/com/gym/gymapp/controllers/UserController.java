@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:8100")
 @RequestMapping("/users")
 public class UserController {
     private UserService userService;
@@ -24,9 +25,9 @@ public class UserController {
     public ResponseEntity<String> createUser(@RequestBody User user) {
         Optional<User> createUser = userService.saveUser(user);
         if (createUser.isPresent()) {
-            return new ResponseEntity<>("The user saved!", HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Error!", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
