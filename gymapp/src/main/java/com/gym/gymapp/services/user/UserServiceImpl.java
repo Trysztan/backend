@@ -1,7 +1,8 @@
-package com.gym.gymapp.services;
+package com.gym.gymapp.services.user;
 
 import com.gym.gymapp.model.User;
 import com.gym.gymapp.repositories.UserRepository;
+import com.gym.gymapp.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -10,7 +11,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
     @Override
@@ -68,6 +69,7 @@ public class UserServiceImpl implements UserService{
             return Optional.empty();
         }
     }
+
 
 
     @Override

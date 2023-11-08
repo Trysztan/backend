@@ -1,4 +1,4 @@
-package com.gym.gymapp.services;
+package com.gym.gymapp.services.user;
 
 import com.gym.gymapp.model.User;
 import org.springframework.web.multipart.MultipartFile;

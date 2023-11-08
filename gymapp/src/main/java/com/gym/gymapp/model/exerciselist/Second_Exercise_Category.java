@@ -1,4 +1,4 @@
-package com.gym.gymapp.model;
+package com.gym.gymapp.model.exerciselist;
 
 public enum Second_Exercise_Category {
 

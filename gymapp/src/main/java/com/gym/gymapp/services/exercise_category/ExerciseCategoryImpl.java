@@ -1,14 +1,14 @@
-package com.gym.gymapp.services;
+package com.gym.gymapp.services.exercise_category;
 
-import com.gym.gymapp.model.First_Exercise_Category;
-import com.gym.gymapp.model.Second_Exercise_Category;
+import com.gym.gymapp.model.exerciselist.First_Exercise_Category;
+import com.gym.gymapp.model.exerciselist.Second_Exercise_Category;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CategoryImpl implements CategoryService{
+public class ExerciseCategoryImpl implements ExerciseCategoryService {
 
     @Override
     public List<Second_Exercise_Category> getSecondCategoriesForFirstCategory(String firstCategory) {

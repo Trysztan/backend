@@ -1,4 +1,4 @@
-package com.gym.gymapp.model;
+package com.gym.gymapp.model.exerciselist;
 
 public enum First_Exercise_Category {
     Core,

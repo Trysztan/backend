@@ -1,7 +1,7 @@
 package com.gym.gymapp.controllers;
 
 import com.gym.gymapp.model.User;
-import com.gym.gymapp.services.UserService;
+import com.gym.gymapp.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

@@ -2,7 +2,8 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
- <!--   <changeSet id="create-table-users" author="your-name">
+ <!--
+ <changeSet id="create-table-users" author="trisztan">
         <createTable tableName="users">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
@@ -14,7 +15,7 @@
             <column name="email" type="varchar(50)"/>
             <column name="imagepath" type="bytea"/>
         </createTable>
-    </changeSet>
+  </changeSet>
  <changeSet id="create-exercise-table" author="trisztan">
   <createTable tableName="exercise">
    <column name="id" type="BIGINT">
@@ -27,8 +28,52 @@
    <column name="distance" type="INTEGER"/>
    <column name="creator_id" type="BIGINT"/>
   </createTable>
- </changeSet>-->
+ </changeSet>
+  <changeSet id="create-exercise-list-table" author="trisztan">
+  <createTable tableName="exercise_list">
+   <column name="id" type="BIGINT">
+    <constraints primaryKey="true" nullable="false"/>
+   </column>
+   <column name="name" type="VARCHAR(255)"/>
+   <column name="first_category" type="VARCHAR(255)"/>
+   <column name="second_category" type="VARCHAR(255)"/>
+   <column name="creator_id" type="BIGINT"/>
+  </createTable>
+ </changeSet>
+  <changeSet id="create-table-recipe" author="trisztan">
+        <createTable tableName="recipe">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="serving" type="INTEGER"/>
+            <column name="creator_id" type="BIGINT"/>
+            <column name="nutrition_facts_id" type="BIGINT"/>
+            <column name="directions" type="TEXT[]"/>
+        </createTable>
+  </changeSet>
+ </changeSet>
+  <changeSet id="create-table-recipe-ingredients" author="trisztan">
+        <createTable tableName="recipe_ingredients">
+            <column name="recipe_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+             <column name="ingredient_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+  </changeSet>
+ -->
+<!--
+CREATE TABLE recipe_ingredients (
+    recipe_id BIGINT,
+    ingredient_id BIGINT,
+    PRIMARY KEY (recipe_id, ingredient_id),
+    FOREIGN KEY (recipe_id) REFERENCES recipe(id),
+    FOREIGN KEY (ingredient_id) REFERENCES ingredient(id)
+);
 
+-->
 </databaseChangeLog>
 
 

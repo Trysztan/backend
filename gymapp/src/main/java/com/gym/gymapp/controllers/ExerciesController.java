@@ -1,8 +1,7 @@
 package com.gym.gymapp.controllers;
 
-import com.gym.gymapp.model.Exercise;
-import com.gym.gymapp.model.First_Exercise_Category;
-import com.gym.gymapp.services.ExerciseService;
+import com.gym.gymapp.model.exerciselist.Exercise;
+import com.gym.gymapp.services.exercise.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +19,12 @@ public class ExerciesController {
     public ExerciesController(ExerciseService exerciseService) {
         this.exerciseService = exerciseService;
     }
+
+    @GetMapping("/getexercise/{id}")
+    public ResponseEntity<Optional<Exercise>> MyExerciseList(@PathVariable("id") Long id){
+        Optional<Exercise> exercise = exerciseService.getExercise(id);
+        return new ResponseEntity<>(exercise, HttpStatus.OK);
+    }
     @PostMapping("/save/{userid}")
     public ResponseEntity<String> createExercise(@RequestBody Exercise exercise,@PathVariable("userid") Long userid) {
         try {
@@ -35,10 +40,10 @@ public class ExerciesController {
         }
     }
 
-    @PutMapping("/update/{userid}")
-    public ResponseEntity<String> updateExercise(@RequestBody Exercise exercise,@PathVariable("userid") Long userid) {
+    @PutMapping("/update")
+    public ResponseEntity<String> updateExercise(@RequestBody Exercise exercise) {
         try {
-            Optional<Exercise> createExercise = exerciseService.createExercise(exercise,userid);
+            Optional<Exercise> createExercise = exerciseService.updateExercise(exercise);
             if (createExercise.isPresent()) {
                 return new ResponseEntity<>(HttpStatus.OK);
             } else {
@@ -53,5 +58,16 @@ public class ExerciesController {
     @GetMapping("/myexercises/{userid}")
     public List<Exercise> getMyExercises(@PathVariable("userid") Long userid){
         return exerciseService.myExercises(userid);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        Optional<Exercise> exercise = exerciseService.getExercise(id);
+        if (exercise.isPresent()) {
+            exerciseService.deleteExercise(exercise.get().getId());
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }
